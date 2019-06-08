@@ -4,13 +4,23 @@ import Cockpit from '../components/Cockpit/Cockpit'
 import classes from "./App.css"
 
 class App extends Component {
-  state = {
+  constructor(props){
+    super(props)
+    console.log('[App.js] constructor')
+  }
+  state = {//this basically do the same as constructor; stating variables can be done here or into
+    //the constructor
     persons : [
       {id:"fsaf",name:"Erick",age:"25"},
       {id:"dg35tg",name:"Jorge",age:"48"},
       {id:"fdg567",name:"David",age:"32"}
     ],
     showPersons :false
+  }
+
+  static getDerivedStateFromProps(props,state){
+    console.log('[App.js] getDerivedStateFromProps',props)
+    return state
   }
 
   togglePersonHandler = () => {
@@ -38,7 +48,16 @@ class App extends Component {
     this.setState({persons})
   }
 
+  // componentWillMount(){
+  //   console.log('[App.js] componentWillMount')
+  // }
+
+  componentDidMount(){
+    console.log('[App.js] componentDidMount')
+  }
+
   render() {
+    console.log('[App.js] render')
     let persons = null  
     if (this.state.showPersons){
       persons = (
