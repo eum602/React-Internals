@@ -13,7 +13,11 @@ class Persons extends Component {
 
   shouldComponentUpdate(nextProps, nextState){
     console.log('[Persons.js] shouldComponentUpdate')
-    return true; //jere we should do some verification to retur true or false so that
+    if(nextProps.persons!==this.props.persons){//only renders this component when properties really change
+      //take in mind the comparison is between pointers to objects in memory (see lecture 95 explanation)
+      return true
+    }
+    return false; //jere we should do some verification to retur true or false so that
     //the update process occurs or not
   }
 
