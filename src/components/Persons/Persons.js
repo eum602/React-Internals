@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import Person from "./Person/Person"
-class Persons extends Component {
+class Persons extends PureComponent {
 
   // static getDerivedStateFromProps(props, state){
   //   console.log('[Persons.js] getDerivedStateFromProps')
@@ -11,15 +11,19 @@ class Persons extends Component {
   //   //removed
   // }
 
-  shouldComponentUpdate(nextProps, nextState){
-    console.log('[Persons.js] shouldComponentUpdate')
-    if(nextProps.persons!==this.props.persons){//only renders this component when properties really change
-      //take in mind the comparison is between pointers to objects in memory (see lecture 95 explanation)
-      return true
-    }
-    return false; //jere we should do some verification to retur true or false so that
-    //the update process occurs or not
-  }
+  // shouldComponentUpdate(nextProps, nextState){
+  //   console.log('[Persons.js] shouldComponentUpdate')
+  //   if(
+  //     nextProps.persons!==this.props.persons || 
+  //     nextProps.changed !== this.props.changed || 
+  //     nextProps.ckicked !== this.props.ckicked){
+  //     //only renders this component when properties really change
+  //     //take in mind the comparison is between pointers to objects in memory (see lecture 95 explanation)
+  //     return true
+  //   }
+  //   return false; //jere we should do some verification to retur true or false so that
+  //   //the update process occurs or not
+  // }
 
   getSnapshotBeforeUpdate(prevProps, prevState){
     console.log('[Persons.js] getSnapshotBeforeUpdate')
