@@ -26,10 +26,10 @@ const cockpit = props => {
     btnClass = classes.Red
   }  
   
-  if(props.persons.length<=2){
+  if(props.personsLength<=2){
     assignedClasses.push(classes.red)
   }
-  if(props.persons.length<=1){
+  if(props.personsLength<=1){
     assignedClasses.push(classes.bold)
   }
   return(
@@ -44,4 +44,7 @@ const cockpit = props => {
   )
 }
 
-export default cockpit
+export default React.memo(cockpit) //React.memo is the analogous to shouldComponentUpdate in class based components.
+//be careful to apply Reac.memo here or ShouldComponentUpdate in class based components; if your
+//component depends too much on parent component so it is a high percent to render a child component
+//then it is not worth to use React.memo or ShouldComponentUpdate.
