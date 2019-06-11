@@ -13,9 +13,9 @@ class App extends Component {
   state = {//this basically do the same as constructor; stating variables can be done here or into
     //the constructor
     persons : [
-      {id:"fsaf",name:"Erick",age:"25"},
-      {id:"dg35tg",name:"Jorge",age:"48"},
-      {id:"fdg567",name:"David",age:"32"}
+      {id:"fsaf",name:"Erick",age:25},
+      {id:"dg35tg",name:"Jorge",age:48},
+      {id:"fdg567",name:"David",age:32}
     ],
     showPersons :false,
     showCockpit:true,
