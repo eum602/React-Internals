@@ -1,5 +1,6 @@
 import React, {useEffect, useRef} from 'react'
 import classes from './Cockpit.css'
+import AuthContext from "../../context/auth-context"
 
 const cockpit = props => {
   const toggleBtnRef = useRef(null) //creating a userRef method that is analogous of 
@@ -48,7 +49,12 @@ const cockpit = props => {
             className={btnClass}
             onClick = {props.clicked}>toggle Person name
           </button>
-          <button onClick={props.login}>Log in</button>
+          <AuthContext.Consumer>
+            {context=> //notice we are using a oneline sytax of es6 arow funtion; otherwise we should use 
+            //return statement to return some JSX
+            <button onClick={context.login}>Log in</button>
+            }
+          </AuthContext.Consumer>
       </div>
   )
 }

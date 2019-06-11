@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import classes from "./Person.css"
 import Aux from "../../../hoc/Aux"
 import withClass from "../../../hoc/withClass"
+import AuthContext from "../../../context/auth-context"
 class Person extends Component {
     constructor(props){
         super(props)
@@ -17,7 +18,12 @@ class Person extends Component {
         console.log('[Person.js] rendering...')
         return (
             <Aux>
-                {this.props.isAuth===true?<p>Authenticated</p>:<p>Please Login</p>}
+                <AuthContext.Consumer>
+                    {context=>
+                        context.authenticated===true?<p>Authenticated</p>:<p>Please Login</p>
+                    }
+                </AuthContext.Consumer>
+                
                 <p onClick = {this.props.click}>I am {this.props.name} and I am {this.props.age} years old</p>
                 <p>{this.props.children}</p>
                 <input 
@@ -37,4 +43,4 @@ Person.propTypes = {
     age: PropTypes.number,
     changed: PropTypes.func
 }
-export default withClass(Person,classes.Person);
+export default withClass(Person,classes.Person)
