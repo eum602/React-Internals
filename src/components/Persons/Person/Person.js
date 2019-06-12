@@ -9,21 +9,21 @@ class Person extends Component {
         super(props)
         this.inputElementRef = React.createRef() //inputElement can hava any other name
     }
+
+    static contextType = AuthContext //static means that it can be accessed by outside without the need to 
+                        //instantiate an object based on this class Person.
     componentDidMount(){
         //this.inputEl.focus()
         this.inputElementRef.current.focus() //selecting the current inputElement and in there using
         //focus
+
+        console.log(this.context.authenticated)
     }
     render(){
         console.log('[Person.js] rendering...')
         return (
             <Aux>
-                <AuthContext.Consumer>
-                    {context=>
-                        context.authenticated===true?<p>Authenticated</p>:<p>Please Login</p>
-                    }
-                </AuthContext.Consumer>
-                
+                {this.context.authenticated===true?<p>Authenticated</p>:<p>Please Login</p>}
                 <p onClick = {this.props.click}>I am {this.props.name} and I am {this.props.age} years old</p>
                 <p>{this.props.children}</p>
                 <input 

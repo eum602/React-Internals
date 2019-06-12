@@ -1,10 +1,13 @@
-import React, {useEffect, useRef} from 'react'
+import React, {useEffect, useRef, useContext} from 'react'
 import classes from './Cockpit.css'
 import AuthContext from "../../context/auth-context"
 
 const cockpit = props => {
   const toggleBtnRef = useRef(null) //creating a userRef method that is analogous of 
   //createRef but for functional components
+
+  const authContext = useContext(AuthContext) //now we can use authContext anywhere here
+  console.log(authContext.authenticated)
 
   //ALL USEEFECT RUNS AFTER RENDER() 
   useEffect(()=>{//useEffect is called everytime this component is rendered
@@ -49,12 +52,9 @@ const cockpit = props => {
             className={btnClass}
             onClick = {props.clicked}>toggle Person name
           </button>
-          <AuthContext.Consumer>
-            {context=> //notice we are using a oneline sytax of es6 arow funtion; otherwise we should use 
-            //return statement to return some JSX
-            <button onClick={context.login}>Log in</button>
-            }
-          </AuthContext.Consumer>
+          <button onClick={authContext.login}>Log in</button>
+          
+        
       </div>
   )
 }
